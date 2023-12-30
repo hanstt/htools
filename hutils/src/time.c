@@ -42,7 +42,7 @@
 #endif
 
 double
-time_getd()
+time_getd(void)
 {
 #if defined(HUTILS_CLOCK_GETTIME)
 	enum MutexState {
@@ -123,7 +123,7 @@ time_getd()
 }
 
 char *
-time_gets()
+time_gets(void)
 {
 	struct tm tm;
 	time_t tt;

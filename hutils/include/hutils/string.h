@@ -18,6 +18,7 @@
 #define HUTILS_STRING_H
 
 #include <stdarg.h>
+#include <stdio.h>
 #include <string.h>
 #include <hutils/cdecls.h>
 #include <hutils/funcattr.h>
@@ -26,7 +27,8 @@
 CDECLS_BEGIN
 
 #if HCONF_mNPRINTF_bSTDIO || defined(_MSC_VER)
-#	include <stdio.h>
+#elif HCONF_mNPRINTF_bPOSIX_200112
+/* HCONF_CPPFLAGS=-D_POSIX_C_SOURCE=200809 */
 #elif HCONF_mNPRINTF_bPROTOTYPE
 int snprintf(char *, size_t, char const *, ...) FUNC_PRINTF(3, 4);
 int vsnprintf(char *, size_t, char const *, va_list) FUNC_PRINTF(3, 0);

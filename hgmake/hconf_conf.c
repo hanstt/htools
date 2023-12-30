@@ -252,7 +252,7 @@ module_add(char *a_name)
 }
 
 void
-my_exit()
+my_exit(void)
 {
 	if (NULL != g_log) {
 		fclose(g_log);
@@ -345,7 +345,7 @@ resolve_variables(struct Branch *a_branch)
 }
 
 void
-try()
+try(void)
 {
 	pid_t pid;
 	struct Module *module;

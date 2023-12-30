@@ -66,7 +66,7 @@ unsigned g_htry_void_line_;
 extern struct HTestSuite g_htest_suite_list_[];
 
 void
-htest_cov_flush_()
+htest_cov_flush_(void)
 {
 #ifdef HTEST_DO_COV_FLUSH
 	HTEST_COV_FLUSH_;
@@ -107,13 +107,13 @@ try_sighandler(int a_signum)
 }
 
 int
-htest_do_recover()
+htest_do_recover(void)
 {
 	return g_do_recover;
 }
 
 void
-htest_output_restore_()
+htest_output_restore_(void)
 {
 	if (g_do_verbose) {
 		return;
@@ -123,7 +123,7 @@ htest_output_restore_()
 }
 
 void
-htest_output_suppress_()
+htest_output_suppress_(void)
 {
 	if (g_do_verbose) {
 		return;
@@ -148,7 +148,7 @@ htest_set_color_(HTEST_COLOR_ a_color)
 }
 
 void
-htest_suite_install_sighandler_()
+htest_suite_install_sighandler_(void)
 {
 	signal(SIGABRT, suite_sighandler);
 #if defined(SIGBUS)
@@ -161,7 +161,7 @@ htest_suite_install_sighandler_()
 }
 
 void
-htest_try_install_sighandler_()
+htest_try_install_sighandler_(void)
 {
 	signal(SIGABRT, try_sighandler);
 #if defined(SIGBUS)

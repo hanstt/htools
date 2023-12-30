@@ -647,7 +647,7 @@ udp_server_write(struct UDPServer const *a_server, void const *a_data, size_t
 }
 
 int
-udp_setup()
+udp_setup(void)
 {
 #if defined(_MSC_VER)
 	struct WSAData wsa;
@@ -662,7 +662,7 @@ udp_setup()
 }
 
 void
-udp_shutdown()
+udp_shutdown(void)
 {
 #if defined(_MSC_VER)
 	WSACleanup();

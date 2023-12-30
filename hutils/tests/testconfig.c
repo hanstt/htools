@@ -21,7 +21,7 @@
 static char *get_tmp_path(void);
 
 char *
-get_tmp_path()
+get_tmp_path(void)
 {
 	char const *tmpdir;
 	char *path;
