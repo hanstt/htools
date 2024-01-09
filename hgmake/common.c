@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, 2019-2020
+ * Copyright (c) 2016-2017, 2019-2020, 2024
  * Hans Toshihide Törnqvist <hans.tornqvist@gmail.com>
  *
  * Permission to use, copy, modify, and/or distribute this software for any
@@ -435,7 +435,7 @@ strndup_(char const *a_s, size_t a_maxlen)
 	}
 	s = malloc(len + 1);
 	if (NULL == s) {
-		err_(EXIT_FAILURE, s);
+		err_(EXIT_FAILURE, "malloc");
 	}
 	memmove(s, a_s, len);
 	s[len] = '\0';

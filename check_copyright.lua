@@ -1,4 +1,5 @@
--- Copyright (c) 2018 Hans Toshihide Törnqvist <hans.tornqvist@gmail.com>
+-- Copyright (c) 2018, 2024
+-- Hans Toshihide Törnqvist <hans.tornqvist@gmail.com>
 --
 -- Permission to use, copy, modify, and/or distribute this software for any
 -- purpose with or without fee is hereby granted, provided that the above
@@ -28,21 +29,21 @@ function append(str, first, last)
 end
 
 lookup = {}
-f = io.popen('hg log -v')
+f = io.popen('git log --raw')
 for line in f:lines() do
-	pre = string.sub(line, 1, 5)
-	if pre == "date:" then
+	pre5 = string.sub(line, 1, 5)
+	pre1 = string.sub(line, 1, 1)
+	if pre5 == "Date:" then
 		local tokens = {}
 		for token in string.gmatch(line, "%S+") do
 			table.insert(tokens, token)
 		end
 		year = tokens[6]
-	elseif pre == "files" then
+	elseif pre1 == ":" then
 		local files = {}
 		for file in string.gmatch(line, "%S+") do
 			table.insert(files, file)
 		end
-		table.remove(files, 1)
 		for key,file in pairs(files) do
 			if not lookup[file] then
 				lookup[file] = {}
@@ -107,15 +108,15 @@ for file,years in pairs(lookup) do
 	end
 end
 
-print('Invalid:')
-for idx,file in pairs(invalid) do
+print('Fine:')
+for idx,file in pairs(fine) do
 	print(' ' .. file)
 end
 print('Missing:')
 for idx,file in pairs(missing) do
 	print(' ' .. file)
 end
-print('Fine:')
-for idx,file in pairs(fine) do
+print('Invalid:')
+for idx,file in pairs(invalid) do
 	print(' ' .. file)
 end
